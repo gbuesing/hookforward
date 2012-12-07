@@ -1,0 +1,64 @@
+#!/usr/bin/env node
+
+var argv = process.argv;
+var fs = require('fs');
+var command = argv[2];
+var db_url = argv[3];
+var handler_url = argv[4];
+var rc_filepath = process.cwd() + '/.hookforwardrc';
+var rc_file_exists = fs.existsSync(rc_filepath);
+
+if (rc_file_exists) {
+  var rc_raw = fs.readFileSync(rc_filepath, 'utf8');
+  var rc = JSON.parse(rc_raw);
+
+  if (!db_url) { db_url = rc.db_url };
+  if (!handler_url) { handler_url = rc.handler_url };
+}
+
+
+
+if (command === 'start') {
+  console.log('Starting hookforward listener...')
+  console.log(db_url + ' -> ' + handler_url);
+
+  var forwarder = require('../forwarder');
+  forwarder(db_url, handler_url);
+
+} else if (command === 'push') {
+  console.log('Pushing design doc to ' + db_url)
+
+  var pusher = require('../pusher');
+  pusher(db_url);
+
+} else if (command === 'test') {
+
+  var doc = {
+    "_id": 'test-' + Date.now(),
+    "type": "webhook",
+    "created_at": (new Date()).toJSON(),
+    "req": {
+      "method": "POST",
+      "body": '{"type": "test", "created_at": "' + (new Date()).toJSON() + '"}',
+      "headers": {
+        "Content-Type": "application/json"
+      }
+    }
+  };
+
+  require('request').put({url: db_url + '/' + doc['_id'], json: doc}, function(error, response, body) {
+    if (error) {
+      console.log("Error pushing test doc: " + error);
+    } else {
+      console.log(body);
+      console.log("Test doc pushed.");
+    }
+  });
+
+} else {
+  console.log('Usage:\n');
+  console.log('  hookforward push DB_URL');
+  console.log('  hookforward start DB_URL HANDLER_URL');
+}
+
+

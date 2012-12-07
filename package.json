@@ -1,0 +1,12 @@
+{
+  "name": "hookforward",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "follow": "0.8.0",
+    "request": "2.11.4"
+  },
+  "bin": {
+    "hookforward": "./bin/hookforward"
+  }
+}

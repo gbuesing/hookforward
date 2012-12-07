@@ -14,13 +14,15 @@ One-time setup
 
 1. Get a publicly accessible CouchDB server (free plans available from [IrisCouch](http://www.iriscouch.com/) and [Cloudant](https://cloudant.com/))
 
-2. Run the ```hookforward push``` command with your desired DB url, e.g.:
+2. Install hookforward via npm: ```npm install -g hookforward```
+
+3. Run the ```hookforward push``` command with the url for the DB on your server you'd like to use to store hooks, e.g.:
 ```
 hookforward push https://user:pass@myname.cloudant.com/hooks
 ```
 This will create the DB if it doesn't already exist, and push a design doc with a hook capture update function.
 
-3. Set 2 will output the hook capture url for your DB. Configure your webhook provider to post hooks to this url for development/testing.
+4. Step 3 will output the hook capture url for your DB. Configure your webhook provider to post hooks to this url for development/testing.
 
 
 Usage

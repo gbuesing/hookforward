@@ -6,7 +6,7 @@ You need a publicly accessible CouchDB server that your webhook provider can pos
 
 I used this setup to develop an app that receives [Stripe](https://stripe.com/) webhooks. Nice to be able to run the app on my local machine and have the whole moustrap work.
 
-FYI, Stripe recommends you use [Localtunnel](http://progrium.com/localtunnel/), which works ok (via voodoo I don't understand), but because they recycle urls frequenly, my app was receiving webhooks from various oddball services that the url was previously used for. Creepy.
+This is an alternative to using a service like [Localtunnel](http://progrium.com/localtunnel/). Localtunnel works ok (via voodoo I don't understand), but because they recycle urls frequenly, my app was receiving webhooks from various oddball services that the url was previously used for. Creepy.
 
 
 One-time setup

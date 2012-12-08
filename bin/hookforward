@@ -46,7 +46,7 @@ if (command === 'start') {
     }
   };
 
-  require('request').put({url: db_url + '/' + doc['_id'], json: doc}, function(error, response, body) {
+  require('request').post({url: db_url + '/' + doc['_id'], json: doc}, function(error, response, body) {
     if (error) {
       console.log("Error pushing test doc: " + error);
     } else {

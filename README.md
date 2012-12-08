@@ -33,16 +33,18 @@ Start the forwarder server on your dev machine with the ```hookforward start``` 
 hookforward start https://user:pass@myname.cloudant.com/hooks http://localhost:4567/myhandler
 ```
 
+You can also specify these urls in a .hookforwardrc file -- see instructions below.
+
 
 Testing the setup
 -----------------
 
-Trigger a test webhook from your webhook provider, or use the ```hookforward test``` command, e.g.:
+Trigger a test webhook from your webhook provider, or use the ```hookforward test``` command:
 ```
 hookforward test https://user:pass@myname.cloudant.com/hooks
 ```
 
-Here's a simple one-line Sinatra app to test receiving webhooks, which will just dump the contents to STDOUT:
+Here's a simple one-line Sinatra app you can use to dummy as the app that would consume the webhooks:
 ```
 ruby -rubygems -r sinatra -e "post('*') { puts request.body.read }"
 ```
@@ -59,11 +61,11 @@ You can create a .hookforwardrc file with your DB and handler urls:
 }
 ```
 
-This will allow you to run hookforward commands without having to specify urls, e.g. you can just run ```hookforward start```
+This will allow you to run ```hookforward start```, ```hookforward push``` and ```hookforward test``` without having to specify urls.
 
 
-Caveats
--------
+Limitations
+-----------
 This setup won't work for webhooks that contain binary data -- CouchDB will only accept binary data if it's encoded as Base64.
 
 

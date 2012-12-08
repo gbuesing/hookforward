@@ -14,5 +14,6 @@
   },
   "bin": {
     "hookforward": "./bin/hookforward"
-  }
+  },
+  "main": "hookforward"
 }

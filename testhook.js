@@ -1,25 +1,19 @@
 var request = require('request');
 
-module.exports = function(db_url) {
-  var doc = {
-    "_id": 'test-' + Date.now(),
-    "type": "webhook",
-    "created_at": (new Date()).toJSON(),
-    "req": {
-      "method": "POST",
-      "body": '{"type": "test", "created_at": "' + (new Date()).toJSON() + '"}',
-      "headers": {
-        "Content-Type": "application/json"
-      }
-    }
-  };
+module.exports = function(db_url, hook_path) {
+  hook_path = hook_path || '/_design/hookforward/_update/capture';
+  var hook_url = db_url + hook_path;
 
-  request.put({url: db_url + '/' + doc['_id'], json: doc}, function(error, response, body) {
+  var doc = {
+    "type": "test",
+    "created_at": (new Date()).toJSON()
+  }
+
+  request.post({url: hook_url, json: doc}, function(error, response, body) {
     if (error) {
-      console.log("Error pushing test doc: " + error);
+      console.log("Error posting test hook: " + error);
     } else {
       console.log(body);
-      console.log("Test doc pushed.");
     }
   });
 }

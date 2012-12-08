@@ -28,7 +28,7 @@ This will create the DB if it doesn't already exist, and push a design doc with 
 Usage
 -----
 
-Start the forwarder server on your dev machine with the ```hookforward start``` command, specifying the db url and the url you'd like to forward your webhook to, e.g.:
+Start the listener app on your dev machine with the ```hookforward start``` command, specifying the db url and the url you'd like to forward webhooks to, e.g.:
 ```
 hookforward start https://user:pass@myname.cloudant.com/hooks http://localhost:4567/myhandler
 ```

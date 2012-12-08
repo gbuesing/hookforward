@@ -20,12 +20,10 @@ if (fs.existsSync(rc_filepath)) {
 
 if (command === 'start') {
 
-  console.log('Starting hookforward listener...');
   hookforward(db_url, handler_url);
 
 } else if (command === 'push') {
 
-  console.log('Pushing design doc to ' + db_url)
   hookforward.pushDesignDoc(db_url);
 
 } else if (command === 'test') {

@@ -20,7 +20,6 @@ if (rc_file_exists) {
 
 if (command === 'start') {
   console.log('Starting hookforward listener...')
-  console.log(db_url + ' -> ' + handler_url);
 
   var forwarder = require('../forwarder');
   forwarder(db_url, handler_url);

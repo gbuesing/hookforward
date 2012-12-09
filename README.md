@@ -11,7 +11,9 @@ This is an alternative to using a service like [Localtunnel](http://progrium.com
 
 Install
 -------
-```npm install -g hookforward```
+```
+npm install -g hookforward
+```
 
 
 Per-project setup

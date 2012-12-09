@@ -2,33 +2,38 @@ Hookforward
 ===========
 Hookforward allows you to forward webhooks from an external provider to an app running on your local machine without having to expose ports.
 
-You need a publicly accessible CouchDB server that your webhook provider can post to. On your local machine, you run a simple program that listens for new webhook docs in CouchDB and forwards them to the url of your dev server.
+You need a publicly accessible CouchDB server that your webhook provider can post to. On your local machine, you run a simple program that listens for new webhook docs in CouchDB and forwards them on to your app running locally.
 
 I used this setup to develop an app that receives [Stripe](https://stripe.com/) webhooks. Nice to be able to run the app on my local machine and have the whole moustrap work.
 
 This is an alternative to using a service like [Localtunnel](http://progrium.com/localtunnel/). Localtunnel works ok (via voodoo I don't understand), but because they recycle urls frequenly, my app was receiving webhooks from various oddball services that the url was previously used for. Creepy.
 
 
-One-time setup
---------------
+Install
+-------
+```npm install -g hookforward```
+
+
+Per-project setup
+-----------------
 
 1. Get a publicly accessible CouchDB server (free plans available from [IrisCouch](http://www.iriscouch.com/) and [Cloudant](https://cloudant.com/))
 
-2. Install hookforward via npm: ```npm install -g hookforward```
+2. Create a database to store webhooks in, and optionally secure this DB with a username:pass.
 
-3. Run the ```hookforward push``` command with the url for the DB on your server you'd like to use to store hooks, e.g.:
+3. Run the ```hookforward push``` command with the url for the DB created in step 2, e.g.:
 ```
 hookforward push https://user:pass@myname.cloudant.com/hooks
 ```
-This will create the DB if it doesn't already exist, and push a design doc with a hook capture update function.
+This will push a design doc with an update function which stores HTTP POST requests as documents.
 
 4. Step 3 will output the hook capture url for your DB. Configure your webhook provider to post hooks to this url for development/testing.
 
 
-Usage
------
+Starting the forwarder app
+--------------------------
 
-Start the listener app on your dev machine with the ```hookforward start``` command, specifying the db url and the url you'd like to forward webhooks to, e.g.:
+Start the forwarder app on your local machine with the ```hookforward start``` command, specifying the db url and the local url for your app's webhook handler, e.g.:
 ```
 hookforward start https://user:pass@myname.cloudant.com/hooks http://localhost:4567/myhandler
 ```

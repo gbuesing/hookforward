@@ -2,15 +2,15 @@
   "name": "hookforward",
   "description": "Simple setup for forwarding webhooks to an app running on your local machine",
   "tags": ["webhook", "couchdb", "postback"],
-  "version": "0.1.3",
+  "version": "0.1.4",
   "author": "Geoff Buesing <gbuesing@gmail.com>",
   "repository": {
     "type" : "git",
     "url" : "http://github.com/gbuesing/hookforward.git"
   },
   "dependencies": {
-    "follow": "~0.8.0",
-    "request": "~2.12.0"
+    "follow": "~0.9.0",
+    "request": "~2.21.0"
   },
   "bin": {
     "hookforward": "./bin/hookforward"

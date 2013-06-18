@@ -45,12 +45,18 @@ module.exports = function(db_url, ddoc_name) {
       request.put({url: ddoc_url, json: ddoc}, function (error, response, body) {
         if (error) {
           console.log("Error putting design doc: " + error);
+        } else if (!isSuccessCode(response.statusCode)) {
+          console.log("Error putting design doc: server returned " + response.statusCode);
         } else {
           console.log("Couch is ready to capture POST webhooks at: \n");
           console.log(db_url + '/' + ddoc_id + '/_update/capture\n');
         }
       });
     });
+  }
+
+  function isSuccessCode(code) {
+    return code >= 200 && code < 300;
   }
 
   putDB(putDDoc);

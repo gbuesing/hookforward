@@ -51,11 +51,10 @@ Testing the setup
 -----------------
 With the DB setup and the forwarder app started, the mousetrap is ready.
 
-Most services will have an easy way to push out a test webhook to your app. If you can't do that, you can use the ```hookforward test``` command:
+Most services will have an easy way to push out a test webhook to your app. If you can't do that, you can just post a simple request to your capture url via curl:
 ```
-hookforward test https://user:pass@myname.cloudant.com/hooks
+curl -X POST -d 'foo=bar' https://user:pass@myname.cloudant.com/hooks/_design/hookforward/_update/capture
 ```
-...which will push a very basic hook to your Couch DB capture url.
 
 The forwarder app is listening for new documents in the DB via Couch DB's changes feed. So once the hook is captured in your DB, the forwarder app will receive the new webhook document, and then post that back to your local app.
 

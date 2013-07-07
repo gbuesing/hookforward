@@ -36,10 +36,6 @@ if (command === 'start') {
 
   hookforward.pushDesignDoc(db_url);
 
-} else if (command === 'test') {
-
-  hookforward.postTestHook(db_url);
-
 } else if (command === 'capture_url') {
 
   console.log(db_url + '/_design/hookforward/_update/capture');
@@ -50,6 +46,5 @@ if (command === 'start') {
   console.log('  hookforward push [DB_URL]');
   console.log('  hookforward capture_url [DB_URL]');
   console.log('  hookforward start [DB_URL] [NOTIFY_URL]');
-  console.log('  hookforward test [DB_URL]');
 
 }

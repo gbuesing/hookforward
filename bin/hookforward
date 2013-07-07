@@ -17,6 +17,10 @@ if (fs.existsSync(rc_filepath)) {
   if (!handler_url) { handler_url = rc.notify_url || rc.handler_url };
 }
 
+if (command === '-v' || command === '--version') {
+  console.log(pkg.version);
+  return;
+}
 
 if (!db_url && command) {
   console.log("You must specify db_url on command line or in .hookforwardrc");
@@ -39,10 +43,6 @@ if (command === 'start') {
 } else if (command === 'capture_url') {
 
   console.log(db_url + '/_design/hookforward/_update/capture');
-
-} else if (command === '-v' || command === '--version') {
-
-  console.log(pkg.version);
 
 } else {
 

@@ -82,7 +82,7 @@ You can create a .hookforwardrc file in the root of your project with your DB an
 }
 ```
 
-This will allow you to run ```hookforward start```, ```hookforward push``` and ```hookforward test``` without having to specify urls.
+This will allow you to run the hookforward executable without having to specify urls.
 
 
 Limitations

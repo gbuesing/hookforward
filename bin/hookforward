@@ -14,7 +14,7 @@ if (fs.existsSync(rc_filepath)) {
   var rc = JSON.parse(rc_raw);
 
   if (!db_url) { db_url = rc.db_url };
-  if (!handler_url) { handler_url = rc.handler_url };
+  if (!handler_url) { handler_url = rc.notify_url || rc.handler_url };
 }
 
 
@@ -49,7 +49,7 @@ if (command === 'start') {
   console.log('Usage:\n');
   console.log('  hookforward push [DB_URL]');
   console.log('  hookforward capture_url [DB_URL]');
-  console.log('  hookforward start [DB_URL] [HANDLER_URL]');
+  console.log('  hookforward start [DB_URL] [NOTIFY_URL]');
   console.log('  hookforward test [DB_URL]');
 
 }

@@ -31,6 +31,10 @@ if (command === 'start') {
 
   hookforward.postTestHook(db_url);
 
+} else if (command === 'capture_url') {
+
+  console.log(db_url + '/_design/hookforward/_update/capture');
+
 } else if (command === '-v' || command === '--version') {
 
   console.log(pkg.version);
@@ -38,7 +42,9 @@ if (command === 'start') {
 } else {
 
   console.log('Usage:\n');
-  console.log('  hookforward push DB_URL');
-  console.log('  hookforward start DB_URL HANDLER_URL');
+  console.log('  hookforward push [DB_URL]');
+  console.log('  hookforward capture_url [DB_URL]');
+  console.log('  hookforward start [DB_URL] [HANDLER_URL]');
+  console.log('  hookforward test [DB_URL]');
 
 }

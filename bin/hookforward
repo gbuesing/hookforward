@@ -2,6 +2,7 @@
 
 var hookforward = require('../hookforward');
 var fs = require('fs');
+var pkg = require('../package.json')
 var argv = process.argv;
 var command = argv[2];
 var db_url = argv[3];
@@ -29,6 +30,10 @@ if (command === 'start') {
 } else if (command === 'test') {
 
   hookforward.postTestHook(db_url);
+
+} else if (command === '-v' || command === '--version') {
+
+  console.log(pkg.version);
 
 } else {
 

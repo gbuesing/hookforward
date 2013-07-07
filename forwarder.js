@@ -9,8 +9,15 @@ module.exports = function(db_url, handler_url) {
   }
 
   function forwardHook(doc) {
+    var url = doc.req.query.handler_url || handler_url;
+
+    if (!url) {
+      console.log("No handler_url defined for webhook id: " + doc._id);
+      return;
+    }
+
     request({
-      url: handler_url,
+      url: url,
       method: doc.req.method,
       body: doc.req.body,
       headers: {

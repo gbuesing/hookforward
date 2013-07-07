@@ -9,7 +9,7 @@ module.exports = function(db_url, handler_url) {
   }
 
   function forwardHook(doc) {
-    var url = doc.req.query.handler_url || handler_url;
+    var url = doc.req.query.notify_url || doc.req.query.handler_url || handler_url;
 
     if (!url) {
       console.log("No handler_url defined for webhook id: " + doc._id);
